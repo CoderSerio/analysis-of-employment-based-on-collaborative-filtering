@@ -1,0 +1,72 @@
+
+.fui-list__cell.data-v-239493c3 {
+		position: relative;
+		flex: 1;
+
+		width: 100%;
+		display: flex;
+		box-sizing: border-box;
+
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+}
+.fui-cell__arrow.data-v-239493c3 {
+		height: 40rpx;
+		width: 40rpx;
+		border-width: 3px 3px 0 0;
+		border-style: solid;
+		transform: rotate(45deg) scale(0.5);
+
+		border-radius: 4rpx;
+		flex-shrink: 0;
+		margin-left: auto;
+		box-sizing: border-box;
+
+
+
+
+		transform-origin: center center;
+		margin-right: -5.8579rpx;
+}
+.fui-cell__border-top.data-v-239493c3 {
+		position: absolute;
+		top: 0;
+
+
+
+
+
+
+		height: 1px;
+		transform: scaleY(0.5);
+		transform-origin: 0 0;
+		z-index: 1;
+}
+.fui-cell__border-bottom.data-v-239493c3 {
+		position: absolute;
+		bottom: 0;
+
+
+
+
+
+		height: 1px;
+		transform: scaleY(0.5);
+		transform-origin: 0 100%;
+		z-index: 1;
+}
+.fui-cell__border-color.data-v-239493c3 {
+		background-color: var(--fui-color-border, #EEEEEE) !important;
+}
+.fui-list__cell-background.data-v-239493c3 {
+		background-color: var(--fui-bg-color, #fff);
+}
+.fui-highlight.data-v-239493c3:active {
+
+
+
+
+
+		background-color: var(--fui-bg-color-hover, rgba(0, 0, 0, 0.2)) !important;
+}

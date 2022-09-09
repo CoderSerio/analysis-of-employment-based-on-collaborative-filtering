@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/main/main",
+    "pages/settings/settings",
+    "pages/questionnaire/questionnaire"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -8,6 +10,17 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/settings/settings",
+        "text": "设置"
+      }
+    ]
+  },
+  "usingComponents": {}
 }

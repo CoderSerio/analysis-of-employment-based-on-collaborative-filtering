@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "fui-list-cell": "../../node-modules/firstui-uni/firstui/fui-list-cell/fui-list-cell",
+    "fui-list": "../../node-modules/firstui-uni/firstui/fui-list/fui-list"
+  }
+}
