@@ -1,30 +1,24 @@
 <template>
-	<view class="content">
+	<view class="main">
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
-			<text class="title">{{title}}</text>
+			<text class="title">就业推荐问卷调查</text>
 		</view>
+		<fui-button width="150rpx" @click="toQuestionnaire">开始测试</fui-button>
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				title: '开发ing'
-			}
-		},
-		onLoad() {
-
-		},
-		methods: {
-
-		}
+<script setup lang="ts">
+	const toQuestionnaire = () => {
+		uni.navigateTo({
+			url: '/pages/questionnaire/questionnaire'
+		})
 	}
+	
 </script>
 
 <style>
-	.content {
+	.main {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -43,6 +37,7 @@
 	.text-area {
 		display: flex;
 		justify-content: center;
+		margin-bottom: 20rpx;
 	}
 
 	.title {

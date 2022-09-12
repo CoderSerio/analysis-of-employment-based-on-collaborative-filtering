@@ -1,5 +1,5 @@
 
-.content {
+.main {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -16,6 +16,7 @@
 .text-area {
 		display: flex;
 		justify-content: center;
+		margin-bottom: 20rpx;
 }
 .title {
 		font-size: 36rpx;

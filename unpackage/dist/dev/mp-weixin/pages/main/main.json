@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "uni-app",
-  "usingComponents": {}
+  "usingComponents": {
+    "fui-button": "../../node-modules/firstui-uni/firstui/fui-button/fui-button"
+  }
 }
