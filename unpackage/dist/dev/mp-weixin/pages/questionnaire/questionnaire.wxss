@@ -51,35 +51,26 @@
 		align-items: center;
 }
 .menu-button.data-v-6ae934ce {
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		width: 100rpx;
 		height: 60rpx;
 }
 .menu.data-v-6ae934ce {
 		display: flex;
-		justify-content: space-around;
-		align-items: flex-start;
 		flex-wrap: wrap;
-		width: 100%;
+		align-content: flex-start;
+		width: 750rpx;
 		height: 500rpx;
-		padding: 20rpx;
+		padding: 20rpx 0 0 0;
 }
 .unit.data-v-6ae934ce {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 20%;
-		height: 100rpx;
+		width: 150rpx;
 }
 .question-button.data-v-6ae934ce {
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		width: 80rpx;
 		height: 80rpx;
 		border-radius: 50%;
+		padding: 0;
+		text-align: center;
 }
 .question-button-normal.data-v-6ae934ce {
 		border: 1px solid #007aff;

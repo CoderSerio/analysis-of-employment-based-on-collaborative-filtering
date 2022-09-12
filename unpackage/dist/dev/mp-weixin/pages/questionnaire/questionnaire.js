@@ -27,27 +27,86 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       {
         id: 1,
         title: "\u957F\u6587\u5B57\u95EE\u9898\u6A21\u62DF\u95EE\u98981",
-        type: "R"
+        type: "R",
+        value: ""
       },
       {
         id: 2,
         title: "\u95EE\u98982",
-        type: "R"
+        type: "R",
+        value: ""
       },
       {
         id: 3,
         title: "\u95EE\u98983",
-        type: "R"
+        type: "R",
+        value: ""
       },
       {
         id: 4,
         title: "\u95EE\u98984",
-        type: "R"
+        type: "R",
+        value: ""
       },
       {
         id: 5,
         title: "\u95EE\u98985",
-        type: "R"
+        type: "R",
+        value: ""
+      },
+      {
+        id: 6,
+        title: "\u95EE\u98986",
+        type: "R",
+        value: ""
+      },
+      {
+        id: 7,
+        title: "\u95EE\u98987",
+        type: "R",
+        value: ""
+      },
+      {
+        id: 1,
+        title: "\u957F\u6587\u5B57\u95EE\u9898\u6A21\u62DF\u95EE\u98981",
+        type: "R",
+        value: ""
+      },
+      {
+        id: 2,
+        title: "\u95EE\u98982",
+        type: "R",
+        value: ""
+      },
+      {
+        id: 3,
+        title: "\u95EE\u98983",
+        type: "R",
+        value: ""
+      },
+      {
+        id: 4,
+        title: "\u95EE\u98984",
+        type: "R",
+        value: ""
+      },
+      {
+        id: 5,
+        title: "\u95EE\u98985",
+        type: "R",
+        value: ""
+      },
+      {
+        id: 6,
+        title: "\u95EE\u98986",
+        type: "R",
+        value: ""
+      },
+      {
+        id: 7,
+        title: "\u95EE\u98987",
+        type: "R",
+        value: ""
       }
     ];
     const answers = ["\u975E\u5E38\u7B26\u5408\u6211\u7684\u60C5\u51B5", "\u6BD4\u8F83\u7B26\u5408\u6211\u7684\u60C5\u51B5", "\u4E0D\u592A\u7B26\u5408\u6211\u7684\u60C5\u51B5", "\u975E\u5E38\u4E0D\u7B26\u5408\u6211\u7684\u60C5\u51B5"];
@@ -58,6 +117,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
     let submit = common_vendor.ref(null);
     let submitCheck = common_vendor.ref(false);
     const answerCheck = (event) => {
+      console.log(typeof event, event);
       questionnaire[currentQuestion.value.id - 1].value = event.detail.value;
     };
     const changePage = (page) => {
@@ -149,5 +209,5 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
     };
   }
 });
-var MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-6ae934ce"], ["__file", "E:/\u524D\u7AEF/uni-app/analysis-of-employment-based-on-collaborative-filtering/pages/questionnaire/questionnaire.vue"]]);
+var MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-6ae934ce"], ["__file", "F:/Code/\u5F00\u6E90\u9879\u76EE\u9B54\u6539/\u804C\u4E1A\u5206\u6790\u89C4\u5212\u52A9\u624B/pages/questionnaire/questionnaire.vue"]]);
 wx.createPage(MiniProgramPage);

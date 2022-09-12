@@ -55,43 +55,98 @@
 </template>
 
 <script setup lang="ts">
-	class Question {
-		id: number
-		title: string
-		type: 'R' | 'I' | 'A' | 'S' | 'E' | 'C'
-		keyOccupation?: unknown//暂时先不写这个，没看懂
-		value?: '1' | '2' | '3' | '4'
-	}
-	class Page {
-		type: 'prev' | 'next'
-		current: number
-	}
+	import {
+		Question,
+		Page,
+		AnswerCheckEvent
+	} from './types'
+	
 	let questionnaire: Array<Question> = [
 		{
 			id: 1,
 			title: '长文字问题模拟问题1',
 			type: 'R',
+			value: ''
 		},
 		{
 			id: 2,
 			title: '问题2',
-			type: 'R'
+			type: 'R',
+			value: ''
 		},
 		{
 			id: 3,
 			title: '问题3',
-			type: 'R'
+			type: 'R',
+			value: ''
 		},
 		{
 			id: 4,
 			title: '问题4',
-			type: 'R'
+			type: 'R',
+			value:''
 		},
 		{
 			id: 5,
 			title: '问题5',
-			type: 'R'
-		}
+			type: 'R',
+			value: ''
+		},
+		{
+			id: 6,
+			title: '问题6',
+			type: 'R',
+			value: ''
+		},
+		{
+			id: 7,
+			title: '问题7',
+			type: 'R',
+			value: ''
+		},
+		{
+			id: 1,
+			title: '长文字问题模拟问题1',
+			type: 'R',
+			value: ''
+		},
+		{
+			id: 2,
+			title: '问题2',
+			type: 'R',
+			value: ''
+		},
+		{
+			id: 3,
+			title: '问题3',
+			type: 'R',
+			value: ''
+		},
+		{
+			id: 4,
+			title: '问题4',
+			type: 'R',
+			value:''
+		},
+		{
+			id: 5,
+			title: '问题5',
+			type: 'R',
+			value: ''
+		},
+		{
+			id: 6,
+			title: '问题6',
+			type: 'R',
+			value: ''
+		},
+		{
+			id: 7,
+			title: '问题7',
+			type: 'R',
+			value: ''
+		},
+		
 	]
 	const answers: Array<string> = ['非常符合我的情况', '比较符合我的情况', '不太符合我的情况', '非常不符合我的情况']
 	let currentQuestion: Ref = ref(questionnaire[0])
@@ -102,9 +157,10 @@
 	let submitCheck: Ref = ref(false)
 	
 	//这个event不知道类型
-	const answerCheck = (event: any) => {
+	const answerCheck = (event: AnswerCheckEvent):void => {
+		console.log(typeof event, event);
 		// console.log(event.detail.value)
-		questionnaire[currentQuestion.value.id-1].value = event.detail.value
+		questionnaire[currentQuestion.value.id - 1].value = event.detail.value		
 		// console.log(questionnaire)
 	}
 	const changePage = (page: Page) => {
@@ -132,7 +188,7 @@
 		submit.value.show({})
 		if(isok) {
 			// console.log('提交成功！')
-			//跳一下路由
+			// TODO: 跳一下路由
 		} else {
 			// console.log('提交失败！')
 			
@@ -199,35 +255,26 @@
 		align-items: center;
 	}
 	.menu-button {
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		width: 100rpx;
 		height: 60rpx;
 	}
 	.menu {
 		display: flex;
-		justify-content: space-around;
-		align-items: flex-start;
 		flex-wrap: wrap;
-		width: 100%;
+		align-content: flex-start;
+		width: 750rpx;
 		height: 500rpx;
-		padding: 20rpx;
+		padding: 20rpx 0 0 0;
 	}
 	.unit {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 20%;
-		height: 100rpx;
+		width: 150rpx;
 	}
 	.question-button {
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		width: 80rpx;
 		height: 80rpx;
 		border-radius: 50%;
+		padding: 0;
+		text-align: center;
 	}
 	.question-button-normal {
 		border: 1px solid #007aff;
