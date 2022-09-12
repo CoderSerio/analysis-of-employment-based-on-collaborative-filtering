@@ -1,10 +1,14 @@
 <template>
 	<view class="main">
-		<image class="logo" src="/static/logo.png"></image>
+		<!-- <image class="logo" src="/static/logo.png"></image> -->
 		<view class="text-area">
-			<text class="title">就业推荐问卷调查</text>
+			<text class="title">就业推荐分析测试</text>
+			<fui-button @click="toQuestionnaire">开始测试</fui-button>
 		</view>
-		<fui-button width="150rpx" @click="toQuestionnaire">开始测试</fui-button>
+		<view class="text-area">
+			<text class="title">MBIT职业性格测试</text>
+			<fui-button @click="toApeskTest">开始测试</fui-button>
+		</view>
 	</view>
 </template>
 
@@ -14,17 +18,25 @@
 			url: '/pages/questionnaire/questionnaire'
 		})
 	}
-	
+	const toApeskTest = () => {
+		uni.navigateTo({
+			url: '/pages/apesk/apesk' 
+		})
+	}
 </script>
 
 <style>
 	.main {
-		display: flex;
+		/* 	display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+	 */	
+		padding: 50rpx;
 	}
-
+	
+	
+/* 
 	.logo {
 		height: 200rpx;
 		width: 200rpx;
@@ -33,15 +45,15 @@
 		margin-right: auto;
 		margin-bottom: 50rpx;
 	}
-
+ */
 	.text-area {
-		display: flex;
-		justify-content: center;
-		margin-bottom: 20rpx;
+		text-align: center;
+		font-size: 48px;
 	}
-
+	
 	.title {
-		font-size: 36rpx;
+		font-size: 18px;
 		color: #8f8f94;
 	}
+	
 </style>

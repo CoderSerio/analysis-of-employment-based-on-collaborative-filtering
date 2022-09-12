@@ -16,12 +16,15 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
         url: "/pages/questionnaire/questionnaire"
       });
     };
+    const toApeskTest = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/apesk/apesk"
+      });
+    };
     return (_ctx, _cache) => {
       return {
         a: common_vendor.o(toQuestionnaire),
-        b: common_vendor.p({
-          width: "150rpx"
-        })
+        b: common_vendor.o(toApeskTest)
       };
     };
   }

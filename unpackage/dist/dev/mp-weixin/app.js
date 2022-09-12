@@ -4,8 +4,8 @@ exports[Symbol.toStringTag] = "Module";
 var common_vendor = require("./common/vendor.js");
 if (!Math) {
   "./pages/main/main.js";
-  "./pages/settings/settings.js";
   "./pages/questionnaire/questionnaire.js";
+  "./pages/apesk/apesk.js";
 }
 const _sfc_main = {
   onLaunch: function() {

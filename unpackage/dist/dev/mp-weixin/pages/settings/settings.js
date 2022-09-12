@@ -1,12 +1,6 @@
 "use strict";
 var common_vendor = require("../../common/vendor.js");
-const _sfc_main = {
-  data() {
-    return {
-      title: "\u6211\u662F\u8BBE\u7F6E\u9875\u9762"
-    };
-  }
-};
+const _sfc_main = {};
 if (!Array) {
   const _easycom_fui_list_cell2 = common_vendor.resolveComponent("fui-list-cell");
   const _easycom_fui_list2 = common_vendor.resolveComponent("fui-list");
@@ -17,9 +11,11 @@ const _easycom_fui_list = () => "../../node-modules/firstui-uni/firstui/fui-list
 if (!Math) {
   (_easycom_fui_list_cell + _easycom_fui_list)();
 }
-function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render(_ctx, _cache) {
   return {
-    a: common_vendor.t($data.title),
+    a: common_vendor.p({
+      arrow: true
+    }),
     b: common_vendor.p({
       arrow: true
     })

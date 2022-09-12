@@ -5,24 +5,22 @@
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
-		}
-	    ,{
-            "path" : "pages/settings/settings",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
+		},
+		{
             "path" : "pages/questionnaire/questionnaire",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
+            }   
+        },
+		{
+            "path" : "pages/apesk/apesk",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
             }
-            
         }
     ],
 	"globalStyle": {
@@ -30,18 +28,6 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
-	},
-	"tabBar": {
-		"list": [
-			{
-				"pagePath": "pages/main/main",
-				"text": "首页"
-			},
-			{
-				"pagePath": "pages/settings/settings",
-				"text": "设置"
-			}
-		]
 	},
 	"easycom": {
 		"autoscan": true,
