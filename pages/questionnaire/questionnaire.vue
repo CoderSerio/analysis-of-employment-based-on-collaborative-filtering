@@ -36,8 +36,13 @@
 		<fui-bottom-popup :show="showMenu" @close="showMenu = false">
 			<scroll-view class="menu" scroll-y="true" enable-flex="true">
 				<view class="unit" v-for="num in questionnaire.length" :key="num">
-					<button :class="'question-button '+(questionnaire[num-1].value?'question-button-active':'question-button-normal')"
-					hover-class="question-button-hover" @click="flyPage(num)">{{num}}</button>
+					<button 
+						@click="flyPage(num)"
+						hover-class="question-button-hover" 
+						:class="'question-button ' + (questionnaire[num - 1].value ? 'question-button-active' : 'question-button-normal')"
+					>
+						{{num}}
+					</button>
 				</view>
 			</scroll-view>
 		</fui-bottom-popup>
@@ -58,96 +63,11 @@
 	import {
 		Question,
 		Page,
-		AnswerCheckEvent
+		AnswerCheckEvent,
+		Type, 
+		Answer
 	} from './types'
-	
-	let questionnaire: Array<Question> = [
-		{
-			id: 1,
-			title: '长文字问题模拟问题1',
-			type: 'R',
-			value: ''
-		},
-		{
-			id: 2,
-			title: '问题2',
-			type: 'R',
-			value: ''
-		},
-		{
-			id: 3,
-			title: '问题3',
-			type: 'R',
-			value: ''
-		},
-		{
-			id: 4,
-			title: '问题4',
-			type: 'R',
-			value:''
-		},
-		{
-			id: 5,
-			title: '问题5',
-			type: 'R',
-			value: ''
-		},
-		{
-			id: 6,
-			title: '问题6',
-			type: 'R',
-			value: ''
-		},
-		{
-			id: 7,
-			title: '问题7',
-			type: 'R',
-			value: ''
-		},
-		{
-			id: 1,
-			title: '长文字问题模拟问题1',
-			type: 'R',
-			value: ''
-		},
-		{
-			id: 2,
-			title: '问题2',
-			type: 'R',
-			value: ''
-		},
-		{
-			id: 3,
-			title: '问题3',
-			type: 'R',
-			value: ''
-		},
-		{
-			id: 4,
-			title: '问题4',
-			type: 'R',
-			value:''
-		},
-		{
-			id: 5,
-			title: '问题5',
-			type: 'R',
-			value: ''
-		},
-		{
-			id: 6,
-			title: '问题6',
-			type: 'R',
-			value: ''
-		},
-		{
-			id: 7,
-			title: '问题7',
-			type: 'R',
-			value: ''
-		},
-		
-	]
+	import { questions as questionnaire } from './questionsData'
 	const answers: Array<string> = ['非常符合我的情况', '比较符合我的情况', '不太符合我的情况', '非常不符合我的情况']
 	let currentQuestion: Ref = ref(questionnaire[0])
 	let currentPage: number = 1
@@ -159,16 +79,13 @@
 	//这个event不知道类型
 	const answerCheck = (event: AnswerCheckEvent):void => {
 		console.log(typeof event, event);
-		// console.log(event.detail.value)
-		questionnaire[currentQuestion.value.id - 1].value = event.detail.value		
-		// console.log(questionnaire)
+		questionnaire[currentQuestion.value.id - 1].value = Number(event.detail.value)		
 	}
 	const changePage = (page: Page) => {
 		// console.log(page)
 		currentPage = page.current
 		currentQuestion.value = questionnaire[currentPage-1]
 		checkedAnswer.value = questionnaire[currentPage-1].value
-		// console.log(questionnaire)
 	}
 	const flyPage = (page: number) => {
 		currentPage = page

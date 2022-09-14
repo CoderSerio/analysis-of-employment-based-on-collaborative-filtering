@@ -3,7 +3,7 @@
 		{
 			"path": "pages/main/main",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "职业分析规划助手"
 			}
 		},
 		{

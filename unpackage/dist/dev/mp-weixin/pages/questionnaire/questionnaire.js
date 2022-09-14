@@ -1,5 +1,7 @@
 "use strict";
 var common_vendor = require("../../common/vendor.js");
+var pages_questionnaire_questionsData = require("./questionsData.js");
+require("./types.js");
 if (!Array) {
   const _easycom_fui_icon2 = common_vendor.resolveComponent("fui-icon");
   const _easycom_fui_radio2 = common_vendor.resolveComponent("fui-radio");
@@ -23,94 +25,8 @@ if (!Math) {
 const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "questionnaire",
   setup(__props) {
-    let questionnaire = [
-      {
-        id: 1,
-        title: "\u957F\u6587\u5B57\u95EE\u9898\u6A21\u62DF\u95EE\u98981",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 2,
-        title: "\u95EE\u98982",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 3,
-        title: "\u95EE\u98983",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 4,
-        title: "\u95EE\u98984",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 5,
-        title: "\u95EE\u98985",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 6,
-        title: "\u95EE\u98986",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 7,
-        title: "\u95EE\u98987",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 1,
-        title: "\u957F\u6587\u5B57\u95EE\u9898\u6A21\u62DF\u95EE\u98981",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 2,
-        title: "\u95EE\u98982",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 3,
-        title: "\u95EE\u98983",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 4,
-        title: "\u95EE\u98984",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 5,
-        title: "\u95EE\u98985",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 6,
-        title: "\u95EE\u98986",
-        type: "R",
-        value: ""
-      },
-      {
-        id: 7,
-        title: "\u95EE\u98987",
-        type: "R",
-        value: ""
-      }
-    ];
     const answers = ["\u975E\u5E38\u7B26\u5408\u6211\u7684\u60C5\u51B5", "\u6BD4\u8F83\u7B26\u5408\u6211\u7684\u60C5\u51B5", "\u4E0D\u592A\u7B26\u5408\u6211\u7684\u60C5\u51B5", "\u975E\u5E38\u4E0D\u7B26\u5408\u6211\u7684\u60C5\u51B5"];
-    let currentQuestion = common_vendor.ref(questionnaire[0]);
+    let currentQuestion = common_vendor.ref(pages_questionnaire_questionsData.questions[0]);
     let currentPage = 1;
     let checkedAnswer = common_vendor.ref(null);
     let showMenu = common_vendor.ref(false);
@@ -118,23 +34,23 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
     let submitCheck = common_vendor.ref(false);
     const answerCheck = (event) => {
       console.log(typeof event, event);
-      questionnaire[currentQuestion.value.id - 1].value = event.detail.value;
+      pages_questionnaire_questionsData.questions[currentQuestion.value.id - 1].value = Number(event.detail.value);
     };
     const changePage = (page) => {
       currentPage = page.current;
-      currentQuestion.value = questionnaire[currentPage - 1];
-      checkedAnswer.value = questionnaire[currentPage - 1].value;
+      currentQuestion.value = pages_questionnaire_questionsData.questions[currentPage - 1];
+      checkedAnswer.value = pages_questionnaire_questionsData.questions[currentPage - 1].value;
     };
     const flyPage = (page) => {
       currentPage = page;
-      currentQuestion.value = questionnaire[currentPage - 1];
-      checkedAnswer.value = questionnaire[currentPage - 1].value;
+      currentQuestion.value = pages_questionnaire_questionsData.questions[currentPage - 1];
+      checkedAnswer.value = pages_questionnaire_questionsData.questions[currentPage - 1].value;
       showMenu.value = false;
     };
     const submitData = () => {
       let isok = true;
-      for (let i = 0; i < questionnaire.length; i++) {
-        if (questionnaire[i].value == void 0) {
+      for (let i = 0; i < pages_questionnaire_questionsData.questions.length; i++) {
+        if (pages_questionnaire_questionsData.questions[i].value == void 0) {
           isok = false;
           break;
         }
@@ -170,7 +86,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
         }),
         j: common_vendor.o(changePage),
         k: common_vendor.p({
-          total: 10 * common_vendor.unref(questionnaire).length,
+          total: 10 * common_vendor.unref(pages_questionnaire_questionsData.questions).length,
           size: "32",
           prevText: "\u4E0A\u4E00\u9898",
           nextText: "\u4E0B\u4E00\u9898",
@@ -178,11 +94,11 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
           color: "white",
           background: "rgb(0, 185, 141)"
         }),
-        l: common_vendor.f(common_vendor.unref(questionnaire).length, (num, k0, i0) => {
+        l: common_vendor.f(common_vendor.unref(pages_questionnaire_questionsData.questions).length, (num, k0, i0) => {
           return {
             a: common_vendor.t(num),
-            b: common_vendor.n("question-button " + (common_vendor.unref(questionnaire)[num - 1].value ? "question-button-active" : "question-button-normal")),
-            c: common_vendor.o(($event) => flyPage(num)),
+            b: common_vendor.o(($event) => flyPage(num)),
+            c: common_vendor.n("question-button " + (common_vendor.unref(pages_questionnaire_questionsData.questions)[num - 1].value ? "question-button-active" : "question-button-normal")),
             d: num
           };
         }),
