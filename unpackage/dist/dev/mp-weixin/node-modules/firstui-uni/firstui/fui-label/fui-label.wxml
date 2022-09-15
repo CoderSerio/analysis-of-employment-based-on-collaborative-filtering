@@ -1,0 +1,1 @@
+<view class="{{['fui-label__box', 'data-v-d3cdf1ee', a && 'fui-label__full']}}" style="{{'padding-top:' + b + ';' + ('padding-right:' + c) + ';' + ('padding-bottom:' + d) + ';' + ('padding-left:' + e) + ';' + ('margin-top:' + f) + ';' + ('margin-right:' + g) + ';' + ('margin-bottom:' + h) + ';' + ('margin-left:' + i)}}" catchtap="{{j}}"><slot></slot></view>

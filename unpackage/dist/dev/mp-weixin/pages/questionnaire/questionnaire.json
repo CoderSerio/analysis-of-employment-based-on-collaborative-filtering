@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "fui-icon": "../../node-modules/firstui-uni/firstui/fui-icon/fui-icon",
+    "fui-radio": "../../node-modules/firstui-uni/firstui/fui-radio/fui-radio",
+    "fui-label": "../../node-modules/firstui-uni/firstui/fui-label/fui-label",
+    "fui-radio-group": "../../node-modules/firstui-uni/firstui/fui-radio-group/fui-radio-group",
+    "fui-pagination": "../../node-modules/firstui-uni/firstui/fui-pagination/fui-pagination",
+    "fui-bottom-popup": "../../node-modules/firstui-uni/firstui/fui-bottom-popup/fui-bottom-popup",
+    "fui-toast": "../../node-modules/firstui-uni/firstui/fui-toast/fui-toast"
+  }
+}
