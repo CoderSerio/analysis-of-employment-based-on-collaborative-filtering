@@ -9,6 +9,9 @@
 			<text class="title">MBIT职业性格测试</text>
 			<fui-button @click="toApeskTest">开始测试</fui-button>
 		</view>
+		<view class="footer">
+			Copyright © LEC
+		</view>
 	</view>
 </template>
 
@@ -27,15 +30,8 @@
 
 <style>
 	.main {
-		/* 	display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	 */	
 		padding: 50rpx;
 	}
-	
-	
 /* 
 	.logo {
 		height: 200rpx;
@@ -56,4 +52,12 @@
 		color: #8f8f94;
 	}
 	
+	.footer {
+		font-size: 12px;
+		color: #8f8f94;
+		position: fixed;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 0;
+	}
 </style>

@@ -11,8 +11,8 @@ export enum Answer {
 	NoChoice = 0,				// 未选择
 	VeryMatched = 1,			// 非常匹配
 	Matched = 2,				// 匹配
-	Mismatched = 3,			// 不匹配
-	VeryMismatched = 4		// 非常不匹配
+	Mismatched = 3,				// 不匹配
+	VeryMismatched = 4			// 非常不匹配
 }
 
 export interface Question {
@@ -33,3 +33,6 @@ export interface AnswerCheckEvent extends Object {
 	}
 }
 
+export interface TotalScore {
+	[key: string]: number;
+}

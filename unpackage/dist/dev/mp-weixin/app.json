@@ -2,7 +2,8 @@
   "pages": [
     "pages/main/main",
     "pages/questionnaire/questionnaire",
-    "pages/apesk/apesk"
+    "pages/apesk/apesk",
+    "pages/result/result"
   ],
   "window": {
     "navigationBarTextStyle": "black",

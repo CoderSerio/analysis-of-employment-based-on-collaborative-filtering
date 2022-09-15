@@ -6310,6 +6310,13 @@ const pages = [
       navigationBarTitleText: "",
       enablePullDownRefresh: false
     }
+  },
+  {
+    path: "pages/result/result",
+    style: {
+      navigationBarTitleText: "",
+      enablePullDownRefresh: false
+    }
   }
 ];
 const globalStyle = {
@@ -6555,7 +6562,7 @@ switch (f) {
   default:
     g = f;
 }
-const p = h('{\n    "address": [\n        "127.0.0.1",\n        "192.168.37.1",\n        "192.168.20.1",\n        "192.168.1.107"\n    ],\n    "debugPort": 51639,\n    "initialLaunchType": "local",\n    "servePort": 51640,\n    "skipFiles": [\n        "<node_internals>/**/*.js",\n        "F:/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), m = h('[{"provider":"tencent","spaceName":"serio-cloud","spaceId":"tcb-al9ir7a2baa961-8dfzfd4a99993"}]');
+const p = h('{\n    "address": [\n        "127.0.0.1",\n        "192.168.37.1",\n        "192.168.20.1",\n        "192.168.1.101"\n    ],\n    "debugPort": 54847,\n    "initialLaunchType": "local",\n    "servePort": 54849,\n    "skipFiles": [\n        "<node_internals>/**/*.js",\n        "F:/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), m = h('[{"provider":"tencent","spaceName":"serio-cloud","spaceId":"tcb-al9ir7a2baa961-8dfzfd4a99993"}]');
 let _ = "";
 try {
   _ = "__UNI__7FE7B43";
@@ -8657,6 +8664,7 @@ exports.isRef = isRef;
 exports.n = n$1;
 exports.o = o$1;
 exports.p = p$1;
+exports.reactive = reactive;
 exports.ref = ref;
 exports.resolveComponent = resolveComponent;
 exports.sr = sr;

@@ -1,14 +1,7 @@
 
 .main {
-		/* 	display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	 */	
 		padding: 50rpx;
 }
-	
-	
 /* 
 	.logo {
 		height: 200rpx;
@@ -27,4 +20,11 @@
 		font-size: 18px;
 		color: #8f8f94;
 }
-	
+.footer {
+		font-size: 12px;
+		color: #8f8f94;
+		position: fixed;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 0;
+}

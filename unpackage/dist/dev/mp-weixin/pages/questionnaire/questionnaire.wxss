@@ -6,7 +6,7 @@
 }
 .questionnaire-title.data-v-6ae934ce {
 		font-size: 24px;
-		font-weight: 700;
+		font-weight: 900;
 		text-align: center;
 }
 .progress-box.data-v-6ae934ce {
@@ -23,7 +23,7 @@
 }
 .title.data-v-6ae934ce {
 		text-align: center;
-		font-size: 24px;
+		font-size: 18px;
 		margin: 50rpx 0;
 }
 .answer.data-v-6ae934ce {
