@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "职业分析规划助手",
-  "usingComponents": {
-    "fui-button": "../../node-modules/firstui-uni/firstui/fui-button/fui-button"
-  }
-}
