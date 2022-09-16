@@ -1,7 +1,7 @@
 "use strict";
 var common_vendor = require("../../common/vendor.js");
-var pages_questionnaire_types = require("./types.js");
 var pages_questionnaire_questionsData = require("./questionsData.js");
+var pages_questionnaire_types = require("./types.js");
 if (!Array) {
   const _easycom_fui_icon2 = common_vendor.resolveComponent("fui-icon");
   const _easycom_fui_radio2 = common_vendor.resolveComponent("fui-radio");
@@ -26,18 +26,18 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "questionnaire",
   setup(__props) {
     const questionnaire = common_vendor.reactive(pages_questionnaire_questionsData.questions);
-    const answers = [
-      "\u975E\u5E38\u7B26\u5408\u6211\u7684\u60C5\u51B5",
-      "\u6BD4\u8F83\u7B26\u5408\u6211\u7684\u60C5\u51B5",
-      "\u4E0D\u592A\u7B26\u5408\u6211\u7684\u60C5\u51B5",
-      "\u975E\u5E38\u4E0D\u7B26\u5408\u6211\u7684\u60C5\u51B5"
-    ];
     let currentQuestion = common_vendor.ref(questionnaire[0]);
     let currentPage = 1;
     let checkedAnswer = common_vendor.ref(null);
     let showMenu = common_vendor.ref(false);
     let submit = common_vendor.ref(null);
     let submitCheck = common_vendor.ref(false);
+    const answers = [
+      "\u975E\u5E38\u7B26\u5408\u6211\u7684\u60C5\u51B5",
+      "\u6BD4\u8F83\u7B26\u5408\u6211\u7684\u60C5\u51B5",
+      "\u4E0D\u592A\u7B26\u5408\u6211\u7684\u60C5\u51B5",
+      "\u975E\u5E38\u4E0D\u7B26\u5408\u6211\u7684\u60C5\u51B5"
+    ];
     const answerCheck = (event) => {
       questionnaire[currentQuestion.value.id - 1].value = Number(event.detail.value);
       console.log(questionnaire);
@@ -59,6 +59,31 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       });
       submitCheck.value = isOK;
       submit.value.show({});
+      if (isOK) {
+        let questionnaireResult = Object.assign({}, pages_questionnaire_questionsData.intQuestionnaireResult);
+        questionnaire.forEach((oneQuestion) => {
+          let weight = oneQuestion.value;
+          console.log(weight);
+          oneQuestion.type.forEach((oneType) => {
+            switch (oneQuestion.value) {
+              case pages_questionnaire_types.Answer.VeryMatched:
+                questionnaireResult[oneType] += 2;
+                break;
+              case pages_questionnaire_types.Answer.Matched:
+                questionnaireResult[oneType] += 1;
+                break;
+              case pages_questionnaire_types.Answer.Mismatched:
+                questionnaireResult[oneType] -= 1;
+                break;
+              case pages_questionnaire_types.Answer.VeryMismatched:
+                questionnaireResult[oneType] -= 2;
+                break;
+            }
+          });
+        });
+        console.log("\u7ED3\u679C", questionnaireResult);
+        common_vendor.index.navigateTo({ url: "/pages/result/result" });
+      }
     };
     return (_ctx, _cache) => {
       return common_vendor.e({

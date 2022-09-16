@@ -36,3 +36,4 @@ export interface AnswerCheckEvent extends Object {
 export interface TotalScore {
 	[key: string]: number;
 }
+

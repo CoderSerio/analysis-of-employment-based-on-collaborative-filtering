@@ -31,4 +31,13 @@ const questions = [
   { id: 19, title: "\u4F60\u505A\u4E8B\u524D\u603B\u662F\u5148\u62DF\u5B9A\u8BA1\u5212", type: [Realistic, Conventional], value: NoChoice },
   { id: 20, title: "\u4F60\u6DF1\u4FE1\u6CA1\u6709\u4EBA\u8109\u5C31\u96BE\u4EE5\u83B7\u5F97\u6210\u529F", type: [Social, Enterprising], value: NoChoice }
 ];
+const intQuestionnaireResult = {
+  R: 10,
+  I: 10,
+  A: 10,
+  S: 10,
+  E: 10,
+  C: 10
+};
+exports.intQuestionnaireResult = intQuestionnaireResult;
 exports.questions = questions;

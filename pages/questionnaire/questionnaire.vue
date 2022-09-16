@@ -73,29 +73,34 @@
 </template>
 
 <script setup lang="ts">
+	import { ref, Ref, reactive } from 'vue';
+	import {
+		questions, 
+		intQuestionnaireResult
+	} from './questionsData'
 	import {
 		Question,
 		Page,
 		AnswerCheckEvent,
 		Type, 
-		Answer
+		Answer,
+		TotalScore
 	} from './types'
-	import { questions } from './questionsData'
-	import { reactive } from 'vue';
-	const questionnaire: Array<Question> = reactive(questions); 
-	const answers: Array<string> = [
-		'非常符合我的情况', 
-		'比较符合我的情况', 
-		'不太符合我的情况', 
-		'非常不符合我的情况'
-	]
+	
+	const questionnaire: Array<Question> = reactive(questions);
 	let currentQuestion: Ref = ref(questionnaire[0])
 	let currentPage: number = 1
 	let checkedAnswer: Ref = ref(null)
 	let showMenu: Ref = ref(false)
 	let submit: Ref = ref(null) // submit按钮dom
 	let submitCheck: Ref = ref(false)
-	
+	const answers: Array<string> = [
+		'非常符合我的情况', 
+		'比较符合我的情况', 
+		'不太符合我的情况', 
+		'非常不符合我的情况'
+	]
+		
 	const answerCheck = (event: AnswerCheckEvent):void => {
 		questionnaire[currentQuestion.value.id - 1].value = Number(event.detail.value)		
 		console.log(questionnaire)
@@ -115,12 +120,37 @@
 		let isOK = !questionnaire.some((one) => {
 			return one.value === Answer.NoChoice;
 		})
-		
 		submitCheck.value = isOK;
 		submit.value.show({});
 		if(isOK) {
-			// console.log('提交成功！')
-			// TODO: 跳一下路由
+			// 统计
+			let questionnaireResult: TotalScore = Object.assign({}, intQuestionnaireResult);
+			questionnaire.forEach((oneQuestion) => {
+				let weight = oneQuestion.value;
+				console.log(weight);
+				oneQuestion.type.forEach((oneType) => {
+					switch(oneQuestion.value) {
+						case Answer.VeryMatched:
+							questionnaireResult[oneType] += 2;
+							break;
+						case Answer.Matched:
+							questionnaireResult[oneType] += 1;
+							break;
+						case Answer.Mismatched:
+							questionnaireResult[oneType] -= 1;
+							break;
+						case Answer.VeryMismatched:
+							questionnaireResult[oneType] -= 2;
+							break;
+						default:
+							break;
+					}
+					
+				})
+			})
+			console.log('结果', questionnaireResult);
+			uni.navigateTo({url: '/pages/result/result'})
+			
 		} else {
 			// console.log('提交失败！')
 			
@@ -129,8 +159,6 @@
 	const showMessage = () => {
 		
 	}
-	
-	import { Ref, ref } from 'vue'
 	
 </script>
 

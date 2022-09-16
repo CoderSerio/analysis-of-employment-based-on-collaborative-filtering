@@ -1,4 +1,4 @@
-import { Type, Question, Answer } from './types' 
+import { Type, Question, Answer, TotalScore } from './types' 
 const { NoChoice } = Answer
 const { 
 	Realistic, 		// 实践
@@ -31,3 +31,12 @@ export const questions: Array<Question> = [
 	{ id: 19, title: '你做事前总是先拟定计划', type: [Realistic, Conventional], value: NoChoice },
 	{ id: 20, title: '你深信没有人脉就难以获得成功', type: [Social, Enterprising], value: NoChoice },
 ]
+
+export const intQuestionnaireResult: TotalScore = {
+	R: 10,
+	I: 10,
+	A: 10,
+	S: 10,
+	E: 10, 
+	C: 10
+}
