@@ -17,19 +17,33 @@ const state = {
 	}
 }
 
+const getters = {
+	questionnaireResult (state) {
+		return state.questionnaireResult
+	}
+}
+
 const mutations = {
-	setTestInfo(testInfo) {
+	setTestInfo(state, testInfo) {
 		state.testInfo = testInfo;
 	},
-	setUserInfo(userInfo) {
+	setUserInfo(state, userInfo) {
 		state.userInfo = userInfo;
 	},
-	setQuestionnaireResult(questionnaireResult) {
+	setQuestionnaireResult(state, questionnaireResult) {
 		state.questionnaireResult = questionnaireResult;
 	}
 }
 
-export const store = createStore({
-	state: state,
-	mutations: mutations
+
+const actions = {
+	
+}
+
+const store = createStore({
+	state,
+	mutations,
+	getters,
 });
+
+export default store;

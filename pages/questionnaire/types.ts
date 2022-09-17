@@ -33,7 +33,12 @@ export interface AnswerCheckEvent extends Object {
 	}
 }
 
-export interface TotalScore {
-	[key: string]: number;
+export interface TotalScore extends Object {
+	R: number,
+	I: number,
+	A: number,
+	S: number,
+	E: number,
+	C: number
 }
 

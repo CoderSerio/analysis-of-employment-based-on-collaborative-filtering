@@ -73,7 +73,8 @@
 </template>
 
 <script setup lang="ts">
-	import { ref, Ref, reactive } from 'vue';
+	import { useStore } from 'vuex';
+	import { ref, Ref, reactive, toRaw } from 'vue';
 	import {
 		questions, 
 		intQuestionnaireResult
@@ -87,6 +88,7 @@
 		TotalScore
 	} from './types'
 	
+	const store = useStore();
 	const questionnaire: Array<Question> = reactive(questions);
 	let currentQuestion: Ref = ref(questionnaire[0])
 	let currentPage: number = 1
@@ -149,11 +151,12 @@
 				})
 			})
 			console.log('结果', questionnaireResult);
-			uni.navigateTo({url: '/pages/result/result'})
-			
+			uni.navigateTo({url: '/pages/result/result'});
+			store.commit('setQuestionnaireResult', questionnaireResult);
+			console.log('全局状态管理', store.getters.questionnaireResult, toRaw(store.state.questionnaireResult), store.state.questionnaireResult.value)
 		} else {
+			// TODO: 得给个提示啥的...
 			// console.log('提交失败！')
-			
 		}
 	}
 	const showMessage = () => {

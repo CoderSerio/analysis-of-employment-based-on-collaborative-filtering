@@ -25,6 +25,7 @@ if (!Math) {
 const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "questionnaire",
   setup(__props) {
+    const store = common_vendor.useStore();
     const questionnaire = common_vendor.reactive(pages_questionnaire_questionsData.questions);
     let currentQuestion = common_vendor.ref(questionnaire[0]);
     let currentPage = 1;
@@ -83,6 +84,8 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
         });
         console.log("\u7ED3\u679C", questionnaireResult);
         common_vendor.index.navigateTo({ url: "/pages/result/result" });
+        store.commit("setQuestionnaireResult", questionnaireResult);
+        console.log("\u5168\u5C40\u72B6\u6001\u7BA1\u7406", store.getters.questionnaireResult, common_vendor.toRaw(store.state.questionnaireResult), store.state.questionnaireResult.value);
       }
     };
     return (_ctx, _cache) => {

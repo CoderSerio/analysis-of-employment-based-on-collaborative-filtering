@@ -4,9 +4,11 @@ var utils_request = require("../../utils/request.js");
 const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "result",
   setup(__props) {
-    common_vendor.ref(true);
+    let isLoading = common_vendor.ref(true);
     const handleGetThreshold = async () => {
+      isLoading.value = true;
       const res = await utils_request.request.getThreshold();
+      isLoading.value = false;
       console.log("\u67E5\u8BE2\u7684\u7ED3\u679C", res);
     };
     common_vendor.onMounted(() => {

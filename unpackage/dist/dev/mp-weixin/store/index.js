@@ -5,18 +5,25 @@ const state = {
   userInfo: {},
   questionnaireResult: {}
 };
-const mutations = {
-  setTestInfo(testInfo) {
-    state.testInfo = testInfo;
-  },
-  setUserInfo(userInfo) {
-    state.userInfo = userInfo;
-  },
-  setQuestionnaireResult(questionnaireResult) {
-    state.questionnaireResult = questionnaireResult;
+const getters = {
+  questionnaireResult(state2) {
+    return state2.questionnaireResult;
   }
 };
-common_vendor.createStore({
+const mutations = {
+  setTestInfo(state2, testInfo) {
+    state2.testInfo = testInfo;
+  },
+  setUserInfo(state2, userInfo) {
+    state2.userInfo = userInfo;
+  },
+  setQuestionnaireResult(state2, questionnaireResult) {
+    state2.questionnaireResult = questionnaireResult;
+  }
+};
+const store = common_vendor.createStore({
   state,
-  mutations
+  mutations,
+  getters
 });
+exports.store = store;

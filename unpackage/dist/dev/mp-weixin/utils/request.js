@@ -4,19 +4,28 @@ const db = common_vendor.rn.database();
 const request = {
   async setThreshold(name, type) {
     try {
-      db.collection("resultSet").where({
+      const res = await db.collection("resultSet").where({
         name
       }).update({});
+      return res;
     } catch (e) {
-      return `${e.codfe}: ${e.message}`;
+      return {
+        errCode: e.errCode,
+        errMsg: e.errMsg,
+        requestId: e.requestId
+      };
     }
   },
   async getThreshold() {
     try {
-      const dataSet = await db.collection("resultSet").get();
-      return dataSet;
+      const res = await db.collection("resultSet").get();
+      return res;
     } catch (e) {
-      return `${e.codfe}: ${e.message}`;
+      return {
+        errCode: e.errCode,
+        errMsg: e.errMsg,
+        requestId: e.requestId
+      };
     }
   }
 };
