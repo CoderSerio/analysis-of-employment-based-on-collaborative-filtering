@@ -23,8 +23,52 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.questionnaire-title {
+.result .questionnaire-title {
   font-size: 24px;
+  padding: 15rpx 0;
+  font-weight: 700;
+  color: #fff;
+  background-color: #00B98D;
+  text-align: center;
+}
+.result .result-item {
+  margin: 20rpx 15rpx;
+  padding: 5rpx;
+  border-bottom: 1px solid #333e;
+}
+.result .character {
+  --lineHeight: 200rpx;
+  --leftWidth: 180rpx;
+  font-size: 18px;
+  height: var(--lineHeight);
+}
+.result .character .character-name {
+  display: inline-block;
+  vertical-align: middle;
+  width: var(--leftWidth);
   font-weight: 900;
   text-align: center;
+  line-height: var(--lineHeight);
+}
+.result .character .character-description {
+  width: calc(750rpx - var(--leftWidth) - 10rpx);
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16px;
+}
+.result .occupations {
+  margin: 20rpx 15rpx;
+  padding: 5rpx;
+}
+.result .occupations .occupation-item {
+  border-left: 16rpx solid #00B98D;
+  padding-left: 5rpx;
+  min-height: 120rpx;
+  max-height: 210rpx;
+  overflow-y: hidden;
+  margin: 0 0 20rpx 0;
+}
+.result .occupations .occupation-item .occupation-name {
+  font-size: 20px;
+  font-weight: 800;
 }

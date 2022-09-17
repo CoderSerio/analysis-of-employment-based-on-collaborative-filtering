@@ -4,6 +4,7 @@
 		<view class="progress-box">
 			<text>问题进度</text>
 			<!-- 可能会加进度条，但这鬼ui还要vip，秀 -->
+			<!-- TODO: 手写一个进度条 -->
 			<view class="progress"></view>
 		</view>
 		<view class="menu-box">

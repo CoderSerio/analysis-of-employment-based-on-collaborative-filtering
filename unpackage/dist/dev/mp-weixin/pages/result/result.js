@@ -13,7 +13,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
     const storeData = common_vendor.toRaw(store.state.questionnaireResult);
     const handleGetThreshold = async () => {
       isLoading.value = true;
-      await utils_request.request.getThreshold();
+      const threshold = await utils_request.request.getThreshold();
       Object.keys(storeData).forEach((key) => {
         if (!result.type) {
           result.value = storeData[key];
@@ -25,6 +25,27 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
           }
         }
       });
+      switch (result.type) {
+        case "R":
+          result.type = "\u73B0\u5B9E\u578B";
+          break;
+        case "E":
+          result.type = "\u4F01\u4E1A\u578B";
+          break;
+        case "S":
+          result.type = "\u793E\u4F1A\u578B";
+          break;
+        case "I":
+          result.type = "\u79D1\u6280\u578B";
+          break;
+        case "C":
+          result.type = "\u7EFC\u5408\u578B";
+          break;
+        case "A":
+          result.type = "\u827A\u672F\u578B";
+          break;
+      }
+      console.log("threshold", threshold);
       isLoading.value = false;
     };
     common_vendor.onMounted(() => {
@@ -32,7 +53,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
     });
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.t(common_vendor.unref(result))
+        a: common_vendor.t(common_vendor.unref(result).type)
       };
     };
   }
