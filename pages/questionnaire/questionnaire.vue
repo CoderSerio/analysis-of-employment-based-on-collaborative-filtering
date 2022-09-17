@@ -260,7 +260,7 @@
 		margin: 0;
 		margin-right: 20rpx;
 		border-radius: 15px;
-		background-color: #409EFF;
+		background-color: #465CFF;
 		color: white;
 		font-size: 14px;
 	}

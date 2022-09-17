@@ -32,6 +32,9 @@ export const questions: Array<Question> = [
 	{ id: 20, title: '你深信没有人脉就难以获得成功', type: [Social, Enterprising], value: NoChoice },
 ]
 
+// 仔细一想我为什么不把这个放到全局状态管理里面，我是睿智啊
+// 但是也懒得改了，后面做完了找个时间优化
+//（每次都这么想，但是实际上没动过
 export const intQuestionnaireResult: TotalScore = {
 	R: 10,
 	I: 10,

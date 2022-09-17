@@ -1,1 +1,1 @@
-<view class="questionnaire-title">测试结果</view>
+<view class="result"><view class="questionnaire-title">测试结果</view><view class="character"><view class="left"> 性格: </view><view class="right">{{a}}</view></view><view class="occupation"><view class="left"> 推荐职业: </view><view class="right"></view></view></view>

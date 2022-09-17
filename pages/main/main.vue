@@ -16,7 +16,7 @@
 			<fui-button @click="toApeskTest">开始测试</fui-button>
 		</view>
 		<view class="footer">
-			Copyright © LEC
+			Copyright © 2022 LEC
 		</view>
 	</view>
 </template>
