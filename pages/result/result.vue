@@ -9,28 +9,21 @@
 				{{result.type}}
 			</view>
 			<view class="character-description">
-				这是对于这个性格的一些解析和描述，阿巴阿巴阿巴
+				<view v-for="desc in result.description">
+					{{desc}}
+				</view>
 			</view>
 		</view>
 		<view class="result-item">
 			推荐职业
 		</view>
 		<view class="occupations">
-			<view class="occupation-item">
+			<view class="occupation-item" v-for="one in threshold.result.data">
 				<view class="occupation-name">
-					职业1
+					{{one.name}}
 				</view>
 				<view class="occupation-description">
-					简述阿巴阿巴
-				</view>
-			</view>
-			<view class="occupation-item">
-				<view class="occupation-name">
-					职业2
-				</view>
-				<view class="occupation-description">
-					也是简述阿巴阿巴阿巴，但是字超级超级多，就像是心脏和字节只能跳动一个，
-					跳动跳动蹦蹦蹦直接到再也跳不动，也就是意味着人和公司之间有一个寄了
+					{{one.description}}
 				</view>
 			</view>
 		</view>
@@ -41,19 +34,39 @@
 <script setup lang="ts">
 	import { onMounted, ref, Ref, reactive, toRaw } from 'vue';
 	import { useStore } from 'vuex';
-	import { request } from '../../utils/request'
-	import { Type } from '../../pages/questionnaire/types'
-	
+	import { request } from '../../utils/request';
+	import { Type } from '../../pages/questionnaire/types';
+	import { translateToCN, resultDescription } from './resultData';
 	const store = useStore();
 	let isLoading: Ref = ref(true);
+	let threshold = reactive({
+		result: {
+			data: []
+		}
+	})
 	let result = reactive({
 		type: '',
-		value: -999
+		value: -999,
+		description: ''
 	});
 	const storeData = toRaw(store.state.questionnaireResult);
 	const handleGetThreshold = async () => {
 		isLoading.value = true;
-		const threshold = await request.getThreshold();
+		threshold = await request.getThreshold();
+		threshold.result.data = threshold.result.data.filter((one) => {
+			return (storeData.R >= one.threshold.R &&
+				storeData.E >= one.threshold.E &&
+				storeData.S >= one.threshold.S &&
+				storeData.I >= one.threshold.I &&
+				storeData.C >= one.threshold.C &&
+				storeData.A >= one.threshold.A)
+		})
+		if (!threshold.result.data.length) {
+			threshold.result.data.push({
+				name: '其他职业', 
+				description: '是非常特殊的性格',
+			})
+		}
 		// 选出数值最高的类型
 		Object.keys(storeData).forEach((key) =>{
 			if (!result.type) {
@@ -66,26 +79,10 @@
 				}
 			}
 		})
-		switch (result.type) {
-			case 'R': 
-				result.type = '现实型';
-				break;
-			case 'E': 
-				result.type = '企业型';
-				break;
-			case 'S': 
-				result.type = '社会型';
-				break;
-			case 'I':
-				result.type = '科技型';
-				break;
-			case 'C':
-				result.type = '综合型';
-				break;
-			case 'A':
-				result.type = '艺术型';
-				break;
-		}
+		// 下面这两行顺序不能交换
+		result.description = resultDescription[result.type];
+		result.type = translateToCN[result.type];
+		
 		console.log('threshold', threshold)
 		isLoading.value = false;
 	}
@@ -115,7 +112,7 @@
 		}
 		
 		.character {
-			--lineHeight: 200rpx;
+			--lineHeight: 260rpx;
 			--leftWidth: 180rpx;
 			font-size: 18px;
 			height: var(--lineHeight);

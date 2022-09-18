@@ -7201,7 +7201,7 @@ switch (f) {
   default:
     g = f;
 }
-const p = h('{\n    "address": [\n        "127.0.0.1",\n        "192.168.37.1",\n        "192.168.20.1",\n        "192.168.1.101"\n    ],\n    "debugPort": 54630,\n    "initialLaunchType": "local",\n    "servePort": 54631,\n    "skipFiles": [\n        "<node_internals>/**/*.js",\n        "F:/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), m = h('[{"provider":"tencent","spaceName":"serio-cloud","spaceId":"tcb-al9ir7a2baa961-8dfzfd4a99993"}]');
+const p = h('{\n    "address": [\n        "127.0.0.1",\n        "192.168.37.1",\n        "192.168.20.1",\n        "192.168.1.101"\n    ],\n    "debugPort": 50706,\n    "initialLaunchType": "local",\n    "servePort": 50707,\n    "skipFiles": [\n        "<node_internals>/**/*.js",\n        "F:/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), m = h('[{"provider":"tencent","spaceName":"serio-cloud","spaceId":"tcb-al9ir7a2baa961-8dfzfd4a99993"}]');
 let _ = "";
 try {
   _ = "__UNI__7FE7B43";

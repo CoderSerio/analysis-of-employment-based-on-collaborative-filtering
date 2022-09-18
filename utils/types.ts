@@ -3,14 +3,13 @@ export interface getThresholdRequest {
 	
 }
 
-export type getThresholdResponse = {
-	data: {
-		name: string,
-		threshold: {[key: string]: number},
-		description: string
-	}, 
-} | {
-	errCode: number,
-	errMsg: string,
-	requestId: string,
-}
+export interface getThresholdResponse {
+	result: {
+		[key: string]: any,
+		data: {
+			name: string,
+			threshold: {[key: string]: number},
+			description: string
+		}
+	}
+} 

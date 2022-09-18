@@ -25,7 +25,7 @@ export const request = {
 	},
 	async getThreshold() {
 		try {
-			const res= await db.collection('resultSet').get();
+			const res = await db.collection('resultSet').get();
 			return res;
 		} catch(e) {
 			return {

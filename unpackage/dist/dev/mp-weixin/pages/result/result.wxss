@@ -37,7 +37,7 @@
   border-bottom: 1px solid #333e;
 }
 .result .character {
-  --lineHeight: 200rpx;
+  --lineHeight: 260rpx;
   --leftWidth: 180rpx;
   font-size: 18px;
   height: var(--lineHeight);
