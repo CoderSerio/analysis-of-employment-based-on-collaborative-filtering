@@ -7,12 +7,12 @@ import {
 const db = uniCloud.database();
 
 export const request = {
-	async setThreshold(name: string, type: Array<Type>) {
+	async setThreshold(name: string,newdata:{}) {
 		try {
 			const res = await db.collection('resultSet').where({
 				name: name
 			}).update({
-				
+				threshold:newdata
 			})
 			return res;
 		} catch(e) {

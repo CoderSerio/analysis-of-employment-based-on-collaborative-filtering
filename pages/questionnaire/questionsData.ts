@@ -15,7 +15,7 @@ export const questions: Array<Question> = [
 	{ id: 3, title: '你对科技非常感兴趣', type: [Investigative], value: NoChoice },
 	{ id: 4, title: '你有较好的音乐、艺术鉴赏能力', type: [Artistic], value: NoChoice },
 	{ id: 5, title: '你总是积极主动', type: [Realistic, Social, Enterprising], value: NoChoice },
-	// { id: 6, title: '你对于未来充满期待', type: [Investigative, Artistic, Enterprising], value: NoChoice },
+	{ id: 6, title: '你对于未来充满期待', type: [Investigative, Artistic, Enterprising], value: NoChoice },
 	// { id: 7, title: '你有做记录的习惯', type: [Conventional], value: NoChoice },
 	// { id: 8, title: '比起赚更多的钱,你更希望能更自由', type: [Artistic], value: NoChoice },
 	// { id: 9, title: '你愿意长期学习新事物', type: [Investigative, Enterprising], value: NoChoice },

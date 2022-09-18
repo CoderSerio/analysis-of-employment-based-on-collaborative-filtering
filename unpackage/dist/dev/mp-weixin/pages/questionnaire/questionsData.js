@@ -14,7 +14,8 @@ const questions = [
   { id: 2, title: "\u5927\u90E8\u5206\u4EBA\u8BA4\u4E3A\u4F60\u975E\u5E38\u53CB\u5584", type: [Social, Conventional], value: NoChoice },
   { id: 3, title: "\u4F60\u5BF9\u79D1\u6280\u975E\u5E38\u611F\u5174\u8DA3", type: [Investigative], value: NoChoice },
   { id: 4, title: "\u4F60\u6709\u8F83\u597D\u7684\u97F3\u4E50\u3001\u827A\u672F\u9274\u8D4F\u80FD\u529B", type: [Artistic], value: NoChoice },
-  { id: 5, title: "\u4F60\u603B\u662F\u79EF\u6781\u4E3B\u52A8", type: [Realistic, Social, Enterprising], value: NoChoice }
+  { id: 5, title: "\u4F60\u603B\u662F\u79EF\u6781\u4E3B\u52A8", type: [Realistic, Social, Enterprising], value: NoChoice },
+  { id: 6, title: "\u4F60\u5BF9\u4E8E\u672A\u6765\u5145\u6EE1\u671F\u5F85", type: [Investigative, Artistic, Enterprising], value: NoChoice }
 ];
 const intQuestionnaireResult = {
   R: 10,

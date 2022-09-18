@@ -1,12 +1,14 @@
 "use strict";
 var common_vendor = require("../common/vendor.js");
-const db = common_vendor.rn.database();
+const db = common_vendor.pn.database();
 const request = {
-  async setThreshold(name, type) {
+  async setThreshold(name, newdata) {
     try {
       const res = await db.collection("resultSet").where({
         name
-      }).update({});
+      }).update({
+        threshold: newdata
+      });
       return res;
     } catch (e) {
       return {

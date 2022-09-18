@@ -17,7 +17,7 @@
 		<view class="result-item">
 			推荐职业
 		</view>
-		<view class="occupations">
+		<view class="occupations" style="margin: ;">
 			<view class="occupation-item" v-for="one in threshold.result.data">
 				<view class="occupation-name">
 					{{one.name}}
@@ -27,18 +27,31 @@
 				</view>
 			</view>
 		</view>
-		
+		<view class="result-item" style="margin-top: 0px;" v-show="isShow">
+			对结果感到如何？
+		</view>
+		<view class="callback" v-if="isShow">
+			<fui-button background="#00B98D" color="#fff"  @click="satisfied">很符合</fui-button>
+			<fui-button background="#00B98D" color="#fff"  @click="dissatisfied">不太符合</fui-button>
+		</view>
+		<view class="result-item" style="margin-top: 0px;" v-show="!isShow">
+			下面哪个选项最能体现您与结果的差异？
+		</view>
+		<view class="callback-item" v-if="!isShow" v-for="(answer, index) in list" :key="answer.id">
+			<fui-button background="#00B98D" color="#fff" v-if="!isShow" @click="updateData(answer.id)" >{{answer.text}}</fui-button>
+		</view>
 	</view>
 </template>
 
 <script setup lang="ts">
-	import { onMounted, ref, Ref, reactive, toRaw } from 'vue';
+	import { onMounted, ref, Ref, reactive, toRaw} from 'vue';
 	import { useStore } from 'vuex';
 	import { request } from '../../utils/request';
 	import { Type } from '../../pages/questionnaire/types';
-	import { translateToCN, resultDescription } from './resultData';
+	import { translateToCN, resultDescription,list,idlist } from './resultData';
 	const store = useStore();
 	let isLoading: Ref = ref(true);
+	let isShow : Ref = ref(true);
 	let threshold = reactive({
 		result: {
 			data: []
@@ -49,7 +62,51 @@
 		value: -999,
 		description: ''
 	});
+	
+	const showToast=()=>{
+		uni.showToast({
+			title:"感谢您的使用！",
+			duration:2000
+		})
+		// if(proxy.$refs.toast?.show){
+		// 	proxy.$refs.toast.show({text:"感谢您的使用！"});
+		// 	
+		}
+	
 	const storeData = toRaw(store.state.questionnaireResult);
+	const satisfied = ()=>{
+		showToast();
+		threshold.result.data.forEach((res)=>{
+			let num=Math.floor(Math.random()*6)
+			let id=idlist[num]
+			let res1=Object.assign({},res);
+			console.log(res1.name);
+			console.log(num);
+			console.log(id);
+			console.log(res1.threshold[id]);
+			res1.threshold[id]++;
+			request.setThreshold(res.name,res1.threshold)
+		});
+		// uni.navigateTo({
+		// 	url:"/pages/main/main"
+		// })
+	};
+	const dissatisfied = ()=>{
+		isShow.value=false;
+	};
+	const updateData = (id)=>{
+		threshold.result.data.forEach((res)=>{
+			let res1=Object.assign({},res);
+			console.log(res.name);
+			console.log(id);
+			console.log(res1.threshold[id]);
+			debugger
+			res1.threshold[id]--;
+			request.setThreshold(res.name,res1.threshold)
+		})
+		
+	}
+	
 	const handleGetThreshold = async () => {
 		isLoading.value = true;
 		threshold = await request.getThreshold();
@@ -132,7 +189,7 @@
 			}
 		}
 		.occupations {
-			margin: 20rpx 15rpx;
+			margin: 10rpx 15rpx 0rpx 15rpx;
 			padding: 5rpx;
 			.occupation-item {
 				border-left: 16rpx solid #00B98D;
@@ -147,6 +204,30 @@
 				}
 			}
 		}
+		
+		.callback{
+			height: 50rpx;
+			width: 100vw;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-around;
+			fui-button{
+				height: 50rpx;
+				width: 150rpx;
+			}
+		}
+		.callback-item{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			fui-button{
+				height: 100rpx;
+				width: 90vw;
+				margin-bottom: 30rpx;
+			}
+		}
+		
 	}
 	
 </style>

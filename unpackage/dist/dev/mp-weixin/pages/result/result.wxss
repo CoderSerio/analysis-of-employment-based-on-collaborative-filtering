@@ -57,7 +57,7 @@
   font-size: 16px;
 }
 .result .occupations {
-  margin: 20rpx 15rpx;
+  margin: 10rpx 15rpx 0rpx 15rpx;
   padding: 5rpx;
 }
 .result .occupations .occupation-item {
@@ -71,4 +71,26 @@
 .result .occupations .occupation-item .occupation-name {
   font-size: 20px;
   font-weight: 800;
+}
+.result .callback {
+  height: 50rpx;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.result .callback fui-button {
+  height: 50rpx;
+  width: 150rpx;
+}
+.result .callback-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.result .callback-item fui-button {
+  height: 100rpx;
+  width: 90vw;
+  margin-bottom: 30rpx;
 }
