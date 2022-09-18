@@ -1,6 +1,6 @@
 "use strict";
 var common_vendor = require("../common/vendor.js");
-const db = common_vendor.pn.database();
+const db = common_vendor.rn.database();
 const request = {
   async setThreshold(name, newdata) {
     try {

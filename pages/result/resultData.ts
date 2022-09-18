@@ -46,6 +46,6 @@ export const list=[
 				text:"我不太喜欢自我表达，还是低调一点比较好"
 			},
 ]
-export const idlist=[
+export const idList=[
 	"R","E","S","A","C","I"
 ]

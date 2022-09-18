@@ -47,7 +47,7 @@ const list = [
     text: "\u6211\u4E0D\u592A\u559C\u6B22\u81EA\u6211\u8868\u8FBE\uFF0C\u8FD8\u662F\u4F4E\u8C03\u4E00\u70B9\u6BD4\u8F83\u597D"
   }
 ];
-const idlist = [
+const idList = [
   "R",
   "E",
   "S",
@@ -55,7 +55,7 @@ const idlist = [
   "C",
   "I"
 ];
-exports.idlist = idlist;
+exports.idList = idList;
 exports.list = list;
 exports.resultDescription = resultDescription;
 exports.translateToCN = translateToCN;

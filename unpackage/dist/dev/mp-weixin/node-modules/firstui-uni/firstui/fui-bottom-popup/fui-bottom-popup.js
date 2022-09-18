@@ -72,5 +72,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     l: common_vendor.o((...args) => $options.stop && $options.stop(...args))
   } : {});
 }
-var Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-46f991b6"], ["__file", "F:/\u524D\u7AEF\u9879\u76EE/analysis-of-employment-based-on-collaborative-filtering/node_modules/firstui-uni/firstui/fui-bottom-popup/fui-bottom-popup.vue"]]);
+var Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-46f991b6"], ["__file", "F:/Code/\u5F00\u6E90\u9879\u76EE\u9B54\u6539/\u804C\u4E1A\u5206\u6790\u89C4\u5212\u52A9\u624B/node_modules/firstui-uni/firstui/fui-bottom-popup/fui-bottom-popup.vue"]]);
 wx.createComponent(Component);

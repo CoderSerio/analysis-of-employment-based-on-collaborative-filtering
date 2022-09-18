@@ -27,19 +27,20 @@
 				</view>
 			</view>
 		</view>
-		<view class="result-item" style="margin-top: 0px;" v-show="isShow">
+		<view class="result-item" style="margin-top: 0px;" v-show="noCheck">
 			对结果感到如何？
 		</view>
-		<view class="callback" v-if="isShow">
+		<view class="callback" v-if="noCheck">
 			<fui-button background="#00B98D" color="#fff"  @click="satisfied">很符合</fui-button>
 			<fui-button background="#00B98D" color="#fff"  @click="dissatisfied">不太符合</fui-button>
 		</view>
-		<view class="result-item" style="margin-top: 0px;" v-show="!isShow">
+		<view class="result-item" style="margin-top: 0px;" v-show="showDissatisfiedBtns">
 			下面哪个选项最能体现您与结果的差异？
 		</view>
-		<view class="callback-item" v-if="!isShow" v-for="(answer, index) in list" :key="answer.id">
-			<fui-button background="#00B98D" color="#fff" v-if="!isShow" @click="updateData(answer.id)" >{{answer.text}}</fui-button>
+		<view class="callback-item" v-if="showDissatisfiedBtns" v-for="(answer, index) in list" :key="answer.id">
+			<fui-button background="#00B98D" color="#fff" v-if="showDissatisfiedBtns" @click="updateData(answer.id)" >{{answer.text}}</fui-button>
 		</view>
+		<fui-loading type="col" :isFixed="true" v-show="isLoading"></fui-loading>
 	</view>
 </template>
 
@@ -48,10 +49,11 @@
 	import { useStore } from 'vuex';
 	import { request } from '../../utils/request';
 	import { Type } from '../../pages/questionnaire/types';
-	import { translateToCN, resultDescription,list,idlist } from './resultData';
+	import { translateToCN, resultDescription,list,idList } from './resultData';
 	const store = useStore();
 	let isLoading: Ref = ref(true);
-	let isShow : Ref = ref(true);
+	let noCheck: Ref = ref(true);
+	let showDissatisfiedBtns: Ref = ref(false);
 	let threshold = reactive({
 		result: {
 			data: []
@@ -63,48 +65,41 @@
 		description: ''
 	});
 	
-	const showToast=()=>{
+	const showToast = (str = '感谢您的使用!')=>{
 		uni.showToast({
-			title:"感谢您的使用！",
+			title: str,
 			duration:2000
 		})
-		// if(proxy.$refs.toast?.show){
-		// 	proxy.$refs.toast.show({text:"感谢您的使用！"});
-		// 	
-		}
+	}
 	
 	const storeData = toRaw(store.state.questionnaireResult);
 	const satisfied = ()=>{
 		showToast();
-		threshold.result.data.forEach((res)=>{
-			let num=Math.floor(Math.random()*6)
-			let id=idlist[num]
-			let res1=Object.assign({},res);
-			console.log(res1.name);
-			console.log(num);
-			console.log(id);
-			console.log(res1.threshold[id]);
-			res1.threshold[id]++;
-			request.setThreshold(res.name,res1.threshold)
-		});
-		// uni.navigateTo({
-		// 	url:"/pages/main/main"
-		// })
+		noCheck.value = false;
+		if (threshold.result.data.length) {
+			threshold.result.data.forEach((res)=>{
+				let index = Math.floor(Math.random()*6);
+				let id = idList[index];
+				let res1 = Object.assign({}, res);
+				res1.threshold[id] ++;
+				request.setThreshold(res.name, res1.threshold)
+			});
+		}
 	};
 	const dissatisfied = ()=>{
-		isShow.value=false;
+		noCheck.value = false;
+		showDissatisfiedBtns.value = true;
 	};
 	const updateData = (id)=>{
-		threshold.result.data.forEach((res)=>{
-			let res1=Object.assign({},res);
-			console.log(res.name);
-			console.log(id);
-			console.log(res1.threshold[id]);
-			debugger
-			res1.threshold[id]--;
-			request.setThreshold(res.name,res1.threshold)
-		})
-		
+		showDissatisfiedBtns.value = false;
+		showToast('感谢您的反馈!');
+		if (threshold.result.data.length ) {
+			threshold.result.data.forEach((res)=>{
+				let res1=Object.assign({},res);
+				res1.threshold[id]--;
+				request.setThreshold(res.name,res1.threshold)
+			})
+		}
 	}
 	
 	const handleGetThreshold = async () => {

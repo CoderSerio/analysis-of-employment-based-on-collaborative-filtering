@@ -4,18 +4,21 @@ var utils_request = require("../../utils/request.js");
 var pages_result_resultData = require("./resultData.js");
 if (!Array) {
   const _easycom_fui_button2 = common_vendor.resolveComponent("fui-button");
-  _easycom_fui_button2();
+  const _easycom_fui_loading2 = common_vendor.resolveComponent("fui-loading");
+  (_easycom_fui_button2 + _easycom_fui_loading2)();
 }
 const _easycom_fui_button = () => "../../node-modules/firstui-uni/firstui/fui-button/fui-button.js";
+const _easycom_fui_loading = () => "../../node-modules/firstui-uni/firstui/fui-loading/fui-loading.js";
 if (!Math) {
-  _easycom_fui_button();
+  (_easycom_fui_button + _easycom_fui_loading)();
 }
 const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   __name: "result",
   setup(__props) {
     const store = common_vendor.useStore();
     let isLoading = common_vendor.ref(true);
-    let isShow = common_vendor.ref(true);
+    let noCheck = common_vendor.ref(true);
+    let showDissatisfiedBtns = common_vendor.ref(false);
     let threshold = common_vendor.reactive({
       result: {
         data: []
@@ -26,40 +29,40 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       value: -999,
       description: ""
     });
-    const showToast = () => {
+    const showToast = (str = "\u611F\u8C22\u60A8\u7684\u4F7F\u7528!") => {
       common_vendor.index.showToast({
-        title: "\u611F\u8C22\u60A8\u7684\u4F7F\u7528\uFF01",
+        title: str,
         duration: 2e3
       });
     };
     const storeData = common_vendor.toRaw(store.state.questionnaireResult);
     const satisfied = () => {
       showToast();
-      threshold.result.data.forEach((res) => {
-        let num = Math.floor(Math.random() * 6);
-        let id = pages_result_resultData.idlist[num];
-        let res1 = Object.assign({}, res);
-        console.log(res1.name);
-        console.log(num);
-        console.log(id);
-        console.log(res1.threshold[id]);
-        res1.threshold[id]++;
-        utils_request.request.setThreshold(res.name, res1.threshold);
-      });
+      noCheck.value = false;
+      if (threshold.result.data.length) {
+        threshold.result.data.forEach((res) => {
+          let index = Math.floor(Math.random() * 6);
+          let id = pages_result_resultData.idList[index];
+          let res1 = Object.assign({}, res);
+          res1.threshold[id]++;
+          utils_request.request.setThreshold(res.name, res1.threshold);
+        });
+      }
     };
     const dissatisfied = () => {
-      isShow.value = false;
+      noCheck.value = false;
+      showDissatisfiedBtns.value = true;
     };
     const updateData = (id) => {
-      threshold.result.data.forEach((res) => {
-        let res1 = Object.assign({}, res);
-        console.log(res.name);
-        console.log(id);
-        console.log(res1.threshold[id]);
-        debugger;
-        res1.threshold[id]--;
-        utils_request.request.setThreshold(res.name, res1.threshold);
-      });
+      showDissatisfiedBtns.value = false;
+      showToast("\u611F\u8C22\u60A8\u7684\u53CD\u9988!");
+      if (threshold.result.data.length) {
+        threshold.result.data.forEach((res) => {
+          let res1 = Object.assign({}, res);
+          res1.threshold[id]--;
+          utils_request.request.setThreshold(res.name, res1.threshold);
+        });
+      }
     };
     const handleGetThreshold = async () => {
       isLoading.value = true;
@@ -106,9 +109,9 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
             b: common_vendor.t(one.description)
           };
         }),
-        d: common_vendor.unref(isShow),
-        e: common_vendor.unref(isShow)
-      }, common_vendor.unref(isShow) ? {
+        d: common_vendor.unref(noCheck),
+        e: common_vendor.unref(noCheck)
+      }, common_vendor.unref(noCheck) ? {
         f: common_vendor.o(satisfied),
         g: common_vendor.p({
           background: "#00B98D",
@@ -120,14 +123,14 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
           color: "#fff"
         })
       } : {}, {
-        j: !common_vendor.unref(isShow),
-        k: !common_vendor.unref(isShow)
-      }, !common_vendor.unref(isShow) ? {
+        j: common_vendor.unref(showDissatisfiedBtns),
+        k: common_vendor.unref(showDissatisfiedBtns)
+      }, common_vendor.unref(showDissatisfiedBtns) ? {
         l: common_vendor.f(common_vendor.unref(pages_result_resultData.list), (answer, index, i0) => {
-          return common_vendor.e(!common_vendor.unref(isShow) ? {
+          return common_vendor.e(common_vendor.unref(showDissatisfiedBtns) ? {
             a: common_vendor.t(answer.text),
             b: common_vendor.o(($event) => updateData(answer.id)),
-            c: "77d1ead4-2-" + i0,
+            c: "7e5a5e46-2-" + i0,
             d: common_vendor.p({
               background: "#00B98D",
               color: "#fff"
@@ -136,10 +139,16 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
             e: answer.id
           });
         }),
-        m: !common_vendor.unref(isShow)
-      } : {});
+        m: common_vendor.unref(showDissatisfiedBtns)
+      } : {}, {
+        n: common_vendor.unref(isLoading),
+        o: common_vendor.p({
+          type: "col",
+          isFixed: true
+        })
+      });
     };
   }
 });
-var MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "F:/\u524D\u7AEF\u9879\u76EE/analysis-of-employment-based-on-collaborative-filtering/pages/result/result.vue"]]);
+var MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "F:/Code/\u5F00\u6E90\u9879\u76EE\u9B54\u6539/\u804C\u4E1A\u5206\u6790\u89C4\u5212\u52A9\u624B/pages/result/result.vue"]]);
 wx.createPage(MiniProgramPage);
