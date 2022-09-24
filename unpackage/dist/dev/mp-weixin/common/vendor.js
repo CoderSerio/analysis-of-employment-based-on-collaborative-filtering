@@ -7201,11 +7201,7 @@ switch (f) {
   default:
     g = f;
 }
-<<<<<<< HEAD
-const p = h('{\n    "address": [\n        "127.0.0.1",\n        "192.168.37.1",\n        "192.168.20.1",\n        "192.168.1.101"\n    ],\n    "debugPort": 54847,\n    "initialLaunchType": "local",\n    "servePort": 54849,\n    "skipFiles": [\n        "<node_internals>/**/*.js",\n        "F:/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), m = h('[{"provider":"tencent","spaceName":"serio-cloud","spaceId":"tcb-al9ir7a2baa961-8dfzfd4a99993"}]');
-=======
-const p = h('{\n    "address": [\n        "127.0.0.1",\n        "192.168.37.1",\n        "192.168.20.1",\n        "192.168.1.101"\n    ],\n    "debugPort": 61542,\n    "initialLaunchType": "local",\n    "servePort": 61544,\n    "skipFiles": [\n        "<node_internals>/**/*.js",\n        "F:/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), m = h('[{"provider":"tencent","spaceName":"serio-cloud","spaceId":"tcb-al9ir7a2baa961-8dfzfd4a99993"}]');
->>>>>>> feat/more-data
+const p = h('{\n    "address": [\n        "127.0.0.1",\n        "192.168.37.1",\n        "192.168.20.1",\n        "192.168.1.104"\n    ],\n    "debugPort": 51979,\n    "initialLaunchType": "local",\n    "servePort": 51981,\n    "skipFiles": [\n        "<node_internals>/**/*.js",\n        "F:/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), m = h('[{"provider":"tencent","spaceName":"serio-cloud","spaceId":"tcb-al9ir7a2baa961-8dfzfd4a99993"}]');
 let _ = "";
 try {
   _ = "__UNI__7FE7B43";
