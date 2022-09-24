@@ -2,7 +2,8 @@
   "pages": [
     "pages/main/main",
     "pages/questionnaire/questionnaire",
-    "pages/apesk/apesk"
+    "pages/apesk/apesk",
+    "pages/result/result"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -10,5 +11,6 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

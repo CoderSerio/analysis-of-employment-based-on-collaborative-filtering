@@ -2,36 +2,50 @@
 	<view class="questionnaire">
 		<view class="questionnaire-title">就业推荐问卷调查</view>
 		<view class="progress-box">
-			<text>问题进度</text>
+			<!-- <text>问题进度</text> -->
 			<!-- 可能会加进度条，但这鬼ui还要vip，秀 -->
+			<!-- TODO: 手写一个进度条 -->
 			<view class="progress"></view>
 		</view>
 		<view class="menu-box">
 			<view class="menu-button" @click="showMenu = true">
 				<fui-icon name="menu"></fui-icon>
 			</view>
-			<button class="submit-button" hover-class="submit-button-hover" @click="submitData">提交</button>
+			<button 
+				class="submit-button" 
+				hover-class="submit-button-hover" 
+				@click="submitData"
+			>
+				提交	
+			</button>
 		</view>
 		<view class="question">
 			<view class="title">
-				<text>{{currentQuestion.id}}: </text>
 				<text>{{currentQuestion.title}}</text>
 			</view>
 		</view>
 		<view class="answers">
 			<fui-radio-group @change="answerCheck" v-model="checkedAnswer">
-				<fui-label v-for="(answer,index) in answers" :key="index">
+				<fui-label v-for="(answer, index) in answers" :key="index">
 					<view class="answer">
 						<view class="block"></view>
 						<text>{{answer}}</text>
-						<fui-radio :value="(String)(index+1)" scaleRatio="1.2"></fui-radio>
+						<fui-radio :value="index+1" scaleRatio="1.2"></fui-radio>
 					</view>
 				</fui-label>
 			</fui-radio-group>
 		</view>
 		<view class="pagination">
-			<fui-pagination :total="10*questionnaire.length" size="32" prevText="上一题" nextText="下一题"
-			:current="currentPage" color="white" background="rgb(0, 185, 141)"  @change="changePage"></fui-pagination>
+			<fui-pagination 
+				:total="10*questionnaire.length" 
+				size="32" 
+				prevText="上一题" 
+				nextText="下一题"
+				:current="currentPage" 
+				color="white" 
+				background="rgb(0, 185, 141)"  
+				@change="changePage" 
+			/>
 		</view>
 		<fui-bottom-popup :show="showMenu" @close="showMenu = false">
 			<scroll-view class="menu" scroll-y="true" enable-flex="true">
@@ -60,29 +74,41 @@
 </template>
 
 <script setup lang="ts">
+	import { useStore } from 'vuex';
+	import { ref, Ref, reactive, toRaw } from 'vue';
+	import {
+		questions, 
+		intQuestionnaireResult
+	} from './questionsData'
 	import {
 		Question,
 		Page,
 		AnswerCheckEvent,
 		Type, 
-		Answer
+		Answer,
+		TotalScore
 	} from './types'
-	import { questions as questionnaire } from './questionsData'
-	const answers: Array<string> = ['非常符合我的情况', '比较符合我的情况', '不太符合我的情况', '非常不符合我的情况']
+	
+	const store = useStore();
+	const questionnaire: Array<Question> = reactive(questions);
 	let currentQuestion: Ref = ref(questionnaire[0])
 	let currentPage: number = 1
 	let checkedAnswer: Ref = ref(null)
 	let showMenu: Ref = ref(false)
-	let submit: Ref = ref(null)//submit按钮dom
+	let submit: Ref = ref(null) // submit按钮dom
 	let submitCheck: Ref = ref(false)
-	
-	//这个event不知道类型
+	const answers: Array<string> = [
+		'非常符合我的情况', 
+		'比较符合我的情况', 
+		'不太符合我的情况', 
+		'非常不符合我的情况'
+	]
+		
 	const answerCheck = (event: AnswerCheckEvent):void => {
-		console.log(typeof event, event);
 		questionnaire[currentQuestion.value.id - 1].value = Number(event.detail.value)		
+		console.log(questionnaire)
 	}
 	const changePage = (page: Page) => {
-		// console.log(page)
 		currentPage = page.current
 		currentQuestion.value = questionnaire[currentPage-1]
 		checkedAnswer.value = questionnaire[currentPage-1].value
@@ -94,28 +120,49 @@
 		showMenu.value = false
 	}
 	const submitData = () => {
-		let isok: boolean = true
-		for(let i = 0; i < questionnaire.length; i++) {
-			if(questionnaire[i].value == undefined) {
-				isok = false
-				break
-			}
-		}
-		submitCheck.value = isok
-		submit.value.show({})
-		if(isok) {
-			// console.log('提交成功！')
-			// TODO: 跳一下路由
+		let isOK = !questionnaire.some((one) => {
+			return one.value === Answer.NoChoice;
+		})
+		submitCheck.value = isOK;
+		submit.value.show({});
+		if(isOK) {
+			// 统计
+			let questionnaireResult: TotalScore = Object.assign({}, intQuestionnaireResult);
+			questionnaire.forEach((oneQuestion) => {
+				let weight = oneQuestion.value;
+				console.log(weight);
+				oneQuestion.type.forEach((oneType) => {
+					switch(oneQuestion.value) {
+						case Answer.VeryMatched:
+							questionnaireResult[oneType] += 2;
+							break;
+						case Answer.Matched:
+							questionnaireResult[oneType] += 1;
+							break;
+						case Answer.Mismatched:
+							questionnaireResult[oneType] -= 1;
+							break;
+						case Answer.VeryMismatched:
+							questionnaireResult[oneType] -= 2;
+							break;
+						default:
+							break;
+					}
+					
+				})
+			})
+			console.log('结果', questionnaireResult);
+			uni.navigateTo({url: '/pages/result/result'});
+			store.commit('setQuestionnaireResult', questionnaireResult);
+			console.log('全局状态管理', store.getters.questionnaireResult, toRaw(store.state.questionnaireResult), store.state.questionnaireResult.value)
 		} else {
+			// TODO: 得给个提示啥的...
 			// console.log('提交失败！')
-			
 		}
 	}
 	const showMessage = () => {
 		
 	}
-	
-	import { Ref, ref } from 'vue'
 	
 </script>
 
@@ -127,7 +174,7 @@
 	}
 	.questionnaire-title {
 		font-size: 24px;
-		font-weight: 700;
+		font-weight: 900;
 		text-align: center;
 	}
 	.progress-box {
@@ -144,7 +191,7 @@
 	}
 	.title {
 		text-align: center;
-		font-size: 24px;
+		font-size: 18px;
 		margin: 50rpx 0;
 	}
 	.answer {
@@ -214,7 +261,7 @@
 		margin: 0;
 		margin-right: 20rpx;
 		border-radius: 15px;
-		background-color: #409EFF;
+		background-color: #465CFF;
 		color: white;
 		font-size: 14px;
 	}
