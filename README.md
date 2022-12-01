@@ -1,10 +1,16 @@
 ##  0 基本信息
 
 > 仓库地址:  
+>
 > https://gitee.com/Serio/analysis-of-employment-based-on-collaborative-filtering
+>
+> https://github.com/CoderSerio/analysis-of-employment-based-on-collaborative-filtering
 > 人员:
+>
 >    PM： @赵千 
+>
 > 	FE:  @沈俞佑 @李京介 @蒲俊彦 
+>
 > 设计稿：
 > (无，参考4.2.2 组件设计)
 
@@ -69,6 +75,7 @@
 > **开发工具**
 >
 > HBuilderX + 微信小程序IDE
+>
 > **核心技术**
 >
 > uni-app + Vue3 + TS + uni-cloud Serveless
@@ -77,6 +84,7 @@
 >
 > First-UI
 > https://doc.firstui.cn/
+>
 > **配色参考**
 >
 > 没有UI，自立更生吧，暂定采用【釉蓝】为主题色**（未采用）**
