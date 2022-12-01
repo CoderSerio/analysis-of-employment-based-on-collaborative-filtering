@@ -56,7 +56,7 @@
 > R 现实型
 > E 企业型
 > S 社会型
-> I  科研型
+> I 科研型
 > C 综合型
 > A 艺术型
 
@@ -67,13 +67,18 @@
 #### 4.2.1 概览
 
 > **开发工具**
+>
 > HBuilderX + 微信小程序IDE
 > **核心技术**
+>
 > uni-app + Vue3 + TS + uni-cloud Serveless
+>
 > **组件库**
+>
 > First-UI
 > https://doc.firstui.cn/
 > **配色参考**
+>
 > 没有UI，自立更生吧，暂定采用【釉蓝】为主题色**（未采用）**
 > http://zhongguose.com/
 
